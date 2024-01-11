@@ -11,6 +11,7 @@ const upload = multer(uploadConfig)
 routes.post('/sessions', SessionController.store);
 routes.post('/cars', upload.single('foto') ,CarController.store);
 routes.get('/cars', CarController.index);
+routes.put('/cars/:car_id', upload.single('foto') , CarController.update);
 
 
 export default routes;
