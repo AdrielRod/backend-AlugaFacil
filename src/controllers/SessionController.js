@@ -7,39 +7,28 @@
     destroy: quando queremos deletar uma sessão
 
     teste1 = 3e
-    teste0 = b2
+    teste0 = 41
     teste = 0e
 */
-import User from "../models/User"
-import bcrypt from 'bcrypt'
+import User from "../models/User";
 
 class SessionController {
     async store(req, res) {
-        const { email, nome, senha } = req.body
+        const { email, nome } = req.body;
 
-        let user = await User.findOne({
-            email: email
-        })
+        try {
+            let user = await User.findOne({ email });
 
-        if (!user) {
-            user = await User.create({
-                nome: nome,
-                email: email,
-                senha: senha,
-            })
-        }else{
-            if(user.senha == senha){
-                user = {
-                    nome: nome,
-                    senha: senha,
-                    email: email,
-                }
+            if(!user){
+                user = await User.create({email, nome})
             }
+
+            return res.json({ user });
+        } catch (error) {
+            console.error(error);
+            return res.status(500).json({ error: 'Erro interno do servidor.' });
         }
-
-
-        return res.json(user)
     }
 }
 
-export default new SessionController()
+export default new SessionController();
