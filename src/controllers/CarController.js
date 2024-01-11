@@ -12,6 +12,14 @@ import uploadConfig from '../config/upload'
 const upload = multer(uploadConfig)
 
 class CarController {
+
+    async index(req, res){
+        const { disponivel } = req.query
+        const houses = await Car.find({disponivel})
+
+        return res.json(houses)
+    }
+
     async store(req, res) {
         const {filename} = req.file
         const {ano, placa, cor, nome, disponivel, precoPorDia} = req.body
