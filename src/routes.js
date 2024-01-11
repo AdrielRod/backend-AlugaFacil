@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import SessionController from './controllers/SessionController';
+import DashboardController from './controllers/DashboardController';
 import CarController from './controllers/CarController';
 import multer from 'multer';
 import uploadConfig from './config/upload'
@@ -13,6 +14,8 @@ routes.post('/cars', upload.single('foto') ,CarController.store);
 routes.get('/cars', CarController.index);
 routes.put('/cars/:car_id', upload.single('foto') , CarController.update);
 routes.delete('/cars', CarController.destroy)
+
+routes.get('/dashboard', DashboardController.show)
 
 
 export default routes;
