@@ -12,6 +12,7 @@ routes.post('/sessions', SessionController.store);
 routes.post('/cars', upload.single('foto') ,CarController.store);
 routes.get('/cars', CarController.index);
 routes.put('/cars/:car_id', upload.single('foto') , CarController.update);
+routes.delete('/cars', CarController.destroy)
 
 
 export default routes;

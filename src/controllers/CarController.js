@@ -68,6 +68,23 @@ class CarController {
 
         return res.send()
     }
+
+    async destroy(req, res){
+        const {car_id} = req.body;
+        const {user_id} = req.headers;
+
+        const user = await User.findById(user_id)
+        const cars = await Car.findById(car_id)
+
+        if(String(user._id) !== String(cars.dono)){
+            return res.status(401).json({error: "Não autorizado."})
+        }
+
+        await Car.findByIdAndDelete({_id: car_id})
+
+
+        return res.json({message: "Excluida com sucesso."})
+    }
 }
 
 export default new CarController();
