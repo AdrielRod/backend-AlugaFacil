@@ -47,8 +47,8 @@ class CarController {
     })
 
     await User.findByIdAndUpdate(user_id, {
-      $inc: { vagasPostada: 1 },
-      $push: { carrosAlugados: car._id },
+      $inc: { carrosPostados: 1 },
+      $push: { listaCarrosPostados: car._id },
     })
 
     return res.json(car)
@@ -101,8 +101,8 @@ class CarController {
     await User.findOneAndUpdate(
       { _id: user_id },
       {
-        $inc: { vagasPostada: -1 },
-        $pull: { carrosAlugados: car_id },
+        $inc: { carrosPostados: -1 },
+        $pull: { listaCarrosPostados: car_id },
       },
     )
 
