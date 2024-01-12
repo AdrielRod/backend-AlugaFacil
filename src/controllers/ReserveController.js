@@ -5,6 +5,14 @@ import { exit } from "process";
 import { isValidObjectId } from "mongoose";
 
 class ReserveController {
+
+    async index(req, res){
+        const {user_id} = req.headers
+        const reserves = await Reserve.find({user:  user_id}).populate('car')
+
+        return res.json(reserves)
+    }
+
     async store(req, res) {
         const { user_id } = req.headers
         const { car_id } = req.params
@@ -38,6 +46,13 @@ class ReserveController {
 
 
 
+    }
+
+    async destroy(req, res){
+        const {reserve_id} = req.body
+
+        await Reserve.findByIdAndDelete({_id: reserve_id})
+        return res.send()
     }
 }
 
