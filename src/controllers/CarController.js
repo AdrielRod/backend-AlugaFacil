@@ -13,9 +13,9 @@ import * as Yup from 'yup'
 class CarController {
   async index(req, res) {
     const { disponivel } = req.query
-    const houses = await Car.find({ disponivel })
+    const cars = await Car.find({ disponivel })
 
-    return res.json(houses)
+    return res.json(cars)
   }
 
   async store(req, res) {
@@ -88,14 +88,6 @@ class CarController {
   async destroy(req, res) {
     const { car_id } = req.body
     const { user_id } = req.headers
-
-    const user = await User.findById(user_id)
-    const cars = await Car.findById(car_id)
-
-    // console.log("User ID:", user_id);
-    // console.log("Car ID:", car_id);
-    // console.log("User:", user);
-    // console.log("Car:", cars);
 
     await Car.findByIdAndDelete({ _id: car_id })
     await User.findOneAndUpdate(
