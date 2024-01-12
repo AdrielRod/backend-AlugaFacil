@@ -1,15 +1,15 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model } from 'mongoose'
 
 const ReserveSchema = new Schema({
   date: String,
   user: {
     type: Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
   },
   car: {
     type: Schema.Types.ObjectId,
-    ref: 'Car'
-  }
-});
+    ref: 'Car',
+  },
+})
 
-export default model('Reserve', ReserveSchema);
+export default model('Reserve', ReserveSchema)

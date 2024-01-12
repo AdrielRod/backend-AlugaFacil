@@ -21,4 +21,4 @@ module.exports = {
     'comma-dangle': ['error', 'always-multiline'],
   },
   reportUnusedDisableDirectives: true,
-};
+}
