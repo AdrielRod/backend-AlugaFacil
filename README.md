@@ -42,6 +42,8 @@ yarn install
 npm install 
 ```
 
+Acesse no Insomnia o `http://localhost:3333`
+
 ## Executando a Aplicação
 ```
 yarn dev
