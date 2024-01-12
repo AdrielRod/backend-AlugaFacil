@@ -1,8 +1,9 @@
 import { Router } from 'express';
+import multer from 'multer';
 import SessionController from './controllers/SessionController';
 import DashboardController from './controllers/DashboardController';
 import CarController from './controllers/CarController';
-import multer from 'multer';
+import ReserveController from './controllers/ReserveController';
 import uploadConfig from './config/upload'
 
 const routes = new Router();
@@ -16,6 +17,7 @@ routes.put('/cars/:car_id', upload.single('foto') , CarController.update);
 routes.delete('/cars', CarController.destroy)
 
 routes.get('/dashboard', DashboardController.show)
+routes.post('/cars/:car_id/reserve', ReserveController.store)
 
 
 export default routes;
