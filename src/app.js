@@ -4,11 +4,13 @@ import cors from 'cors'
 import path from 'path'
 import routes from './routes'
 
+const DB_CONNECTION = 'mongodb+srv://nomeCluster:senhaCluster@nomeCluster.tvzelif.mongodb.net/?retryWrites=true&w=majority'
+
 class App {
   constructor() {
     this.server = express()
     mongoose.connect(
-      'mongodb+srv://nomeCluster:senhaCluster@nomeCluster.tvzelif.mongodb.net/?retryWrites=true&w=majority',
+      DB_CONNECTION,
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,
